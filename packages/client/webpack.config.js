@@ -1,27 +1,27 @@
 const path = require('path');
+const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve('./src/lib/app.js'),
+  entry: path.resolve('./src/lib/app.ts'),
   output: {
     filename: 'bundle.js',
     path: path.resolve('./public'),
   },
   mode: process.env.MODE || 'development',
-  watchOptions: {
-    ignored: /node_modules/,
+  devtool: 'inline-source-map',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
+        test: /\.tsx?$/,
+        exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
+          loader: 'ts-loader',
         },
       },
     ],
   },
+  plugins: [new MinifyPlugin()],
 };

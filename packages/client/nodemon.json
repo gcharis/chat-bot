@@ -1,4 +1,4 @@
 {
   "ignore": "src",
-  "exec": "babel-node index.js"
+  "exec": "babel-node server.js"
 }
