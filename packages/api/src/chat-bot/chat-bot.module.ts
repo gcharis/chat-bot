@@ -2,21 +2,15 @@ import { Module, HttpModule } from '@nestjs/common';
 import { ChatBotGateway } from './chat-bot.gateway';
 import { ChatBotService } from './chat-bot.service';
 import { chatBotResponses } from './chat-bot-responses';
-import { config } from 'dotenv';
-import { CHAT_BOT_RESPONSES, AGENT_KEY } from './chat-bot.tokens';
+import { CHAT_BOT_RESPONSES } from './chat-bot.tokens';
+import { DialogflowModule } from 'src/dialogflow/dialogflow.module';
 
 @Module({
-  imports: [HttpModule],
+  imports: [HttpModule, DialogflowModule],
   providers: [
     {
       provide: CHAT_BOT_RESPONSES,
       useValue: chatBotResponses,
-    },
-    {
-      provide: AGENT_KEY,
-      useFactory() {
-        return config().parsed.AGENT_KEY;
-      },
     },
     ChatBotGateway,
     ChatBotService,

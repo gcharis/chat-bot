@@ -2,15 +2,13 @@ import { WebSocketGateway, OnGatewayConnection, OnGatewayDisconnect, SubscribeMe
 import { Client } from 'socket.io';
 import { ChatBotService } from './chat-bot.service';
 import { ResponseTypes } from './chat-bot-responses';
-import { Inject } from '@nestjs/common';
-import { AGENT_KEY } from './chat-bot.tokens';
 
 @WebSocketGateway(81)
 export class ChatBotGateway implements OnGatewayConnection, OnGatewayDisconnect {
-  constructor(private chatBotService: ChatBotService, @Inject(AGENT_KEY) private agentKey: string) {}
+  constructor(private chatBotService: ChatBotService) {}
   @SubscribeMessage('new message')
-  handleEvent(client: Client, data: string): string {
-    return this.chatBotService.getResponse(ResponseTypes.GREETING);
+  handleEvent(client: Client, data: string) {
+    return this.chatBotService.getResponse(data);
   }
   handleConnection() {
     console.log('connected');

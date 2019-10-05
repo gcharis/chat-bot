@@ -21,7 +21,7 @@ export class ChatBoxComponent implements OnInit {
     this.newMessage = '';
   }
 
-  handleMessage(response: string) {
-    this.messages.push({ author: 'bot_423mnnsz63', content: response });
+  handleMessage(message: string) {
+    this.messages.push({ author: 'bot-asd12kk', content: message });
   }
 }
