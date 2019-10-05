@@ -1,0 +1,25 @@
+mat-card-title {
+  font-family: 'Google Sans';
+}
+
+mat-card-content {
+  padding: 5% 0;
+  max-height: 500px;
+  overflow: auto;
+
+  .chat-bot__messages-container {
+    margin-bottom: 1rem;
+
+    .chat-bot__message {
+      border-radius: 20px;
+      margin-bottom: 2%;
+      padding: 10px 20px;
+      max-width: 40%;
+      background-color: beige;
+    }
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+}
