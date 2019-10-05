@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-chat-box',
@@ -8,14 +9,19 @@ import { Component, OnInit } from '@angular/core';
 export class ChatBoxComponent implements OnInit {
   currentAuthor = 'Charis';
   newMessage = '';
-  messages = [{ author: 'bot_423mnnsz63', content: 'Hello!' }, { author: 'Charis', content: 'Hi!' }];
+  messages = [];
 
-  constructor() {}
+  constructor(private socket: Socket) {}
 
   ngOnInit() {}
 
   sendNewMessage(message: string) {
     this.messages.push({ author: 'Charis', content: message });
+    this.socket.emit('new message', message, this.handleMessage.bind(this));
     this.newMessage = '';
+  }
+
+  handleMessage(response: string) {
+    this.messages.push({ author: 'bot_423mnnsz63', content: response });
   }
 }
