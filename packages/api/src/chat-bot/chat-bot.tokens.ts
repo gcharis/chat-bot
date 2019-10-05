@@ -1,1 +1,0 @@
-export const CHAT_BOT_RESPONSES = 'CHAT_BOT_RESPONSES';

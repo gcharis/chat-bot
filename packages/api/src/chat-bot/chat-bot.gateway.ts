@@ -1,7 +1,6 @@
 import { WebSocketGateway, OnGatewayConnection, OnGatewayDisconnect, SubscribeMessage } from '@nestjs/websockets';
 import { Client } from 'socket.io';
 import { ChatBotService } from './chat-bot.service';
-import { ResponseTypes } from './chat-bot-responses';
 
 @WebSocketGateway(81)
 export class ChatBotGateway implements OnGatewayConnection, OnGatewayDisconnect {
