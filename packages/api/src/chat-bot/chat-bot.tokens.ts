@@ -1,0 +1,2 @@
+export const CHAT_BOT_RESPONSES = 'CHAT_BOT_RESPONSES';
+export const AGENT_KEY = 'AGENT_KEY';
